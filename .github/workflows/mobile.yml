@@ -138,6 +138,15 @@ jobs:
 
           mv ./artifacts/objects/* ./artifacts
           rm -rf ./artifacts/objects/
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: ./artifacts/app-universal-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Archive artifact
         uses: actions/upload-artifact@v4
