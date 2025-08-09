@@ -72,6 +72,7 @@ message NetworkConfig {
 
     optional bool enable_quic_proxy = 45;
     optional bool disable_quic_input = 46;
+    optional string virtual_ipv6 = 49;
 }
 
 message MyNodeInfo {
@@ -82,6 +83,7 @@ message MyNodeInfo {
   common.StunInfo stun_info = 5;
   repeated common.Url listeners = 6;
   optional string vpn_portal_cfg = 7;
+  common.Ipv6Inet virtual_ipv6 = 8;
 }
 
 message NetworkInstanceRunningInfo {

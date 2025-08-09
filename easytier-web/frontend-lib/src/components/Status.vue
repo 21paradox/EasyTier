@@ -19,6 +19,7 @@ const peerRouteInfos = computed(() => {
     return [{
       route: {
         ipv4_addr: my_node_info?.virtual_ipv4,
+        ipv6_addr: my_node_info?.virtual_ipv6,
         hostname: my_node_info?.hostname,
         version: my_node_info?.version,
       },
@@ -106,7 +107,7 @@ function ipFormat(info: PeerRoutePair) {
   return ip ? `${IPv4.fromNumber(ip.address.addr)}/${ip.network_length}` : ''
 }
 function ip6Format(info: PeerRoutePair) {
-  const ip = info.route.ipv4_addr
+  const ip = info.route.ipv6_addr
   return ip || '';
 }
 

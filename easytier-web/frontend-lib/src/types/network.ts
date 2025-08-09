@@ -179,6 +179,7 @@ export interface Url {
 
 export interface NodeInfo {
   virtual_ipv4: Ipv4Inet,
+  virtual_ipv6: string,
   hostname: string
   version: string
   ips: {
@@ -213,6 +214,7 @@ export interface StunInfo {
 export interface Route {
   peer_id: number
   ipv4_addr: Ipv4Inet | string | null
+  ipv6_addr: string | null
   next_hop_peer_id: number
   cost: number
   proxy_cidrs: string[]
