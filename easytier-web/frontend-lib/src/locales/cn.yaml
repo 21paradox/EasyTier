@@ -5,6 +5,8 @@ manual: 手动
 standalone: 独立
 virtual_ipv4: 虚拟IPv4地址
 virtual_ipv4_dhcp: DHCP
+virtual_ipv6: 虚拟IPv6地址
+virtual_ipv6_placeholder: 例如： {0}
 network_name: 网络名称
 network_secret: 网络密码
 public_server_url: 公共服务器地址

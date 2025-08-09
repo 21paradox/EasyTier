@@ -70,6 +70,7 @@ export interface NetworkConfig {
   enable_private_mode?: boolean
 
   rpc_portal_whitelists: string[]
+  virtual_ipv6?: string
 }
 
 export function DEFAULT_NETWORK_CONFIG(): NetworkConfig {
@@ -132,6 +133,7 @@ export function DEFAULT_NETWORK_CONFIG(): NetworkConfig {
     enable_magic_dns: false,
     enable_private_mode: false,
     rpc_portal_whitelists: [],
+    virtual_ipv6: '',
   }
 }
 

@@ -249,6 +249,14 @@ const bool_flags: BoolFlag[] = [
 
               <div class="flex flex-row gap-x-9 flex-wrap">
                 <div class="flex flex-col gap-2 basis-5/12 grow">
+                  <label for="virtual_ipv6">{{ t('virtual_ipv6') }}</label>
+                  <InputText id="virtual_ipv6" v-model="curNetwork.virtual_ipv6" aria-describedby="virtual_ipv6" :format="true"
+                    :placeholder="t('virtual_ipv6_placeholder', ['fd01::1/96'])" />
+                </div>
+              </div>
+
+              <div class="flex flex-row gap-x-9 flex-wrap">
+                <div class="flex flex-col gap-2 basis-5/12 grow">
                   <label for="hostname">{{ t('hostname') }}</label>
                   <InputText id="hostname" v-model="curNetwork.hostname" aria-describedby="hostname-help" :format="true"
                     :placeholder="t('hostname_placeholder', [props.hostname])" />

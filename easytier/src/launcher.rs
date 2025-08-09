@@ -188,6 +188,7 @@ impl EasyTierLauncher {
                                 .dump_client_config(peer_mgr_c.clone())
                                 .await,
                         ),
+                        virtual_ipv6: global_ctx_c.get_ipv6().map(|ip| ip.into()),
                     };
                     *data_c.my_node_info.write().unwrap() = node_info.clone();
                     *data_c.routes.write().unwrap() = peer_mgr_c.list_routes().await;
@@ -521,6 +522,13 @@ impl NetworkConfig {
                 cfg.set_ipv4(Some(ip));
             }
         }
+         // Handle IPv6 in CIDR notation
+        if let Some(virtual_ipv6) = &self.virtual_ipv6 {
+            let ip = virtual_ipv6
+                .parse()
+                .with_context(|| format!("failed to parse ipv6 inet address: {}", virtual_ipv6))?;
+            cfg.set_ipv6(Some(ip));
+        }
 
         match NetworkingMethod::try_from(self.networking_method.unwrap_or_default())
             .unwrap_or_default()
@@ -776,6 +784,9 @@ impl NetworkConfig {
         if let Some(ipv4) = config.get_ipv4() {
             result.virtual_ipv4 = Some(ipv4.address().to_string());
             result.network_length = Some(ipv4.network_length() as i32);
+        }
+        if let Some(ipv6) = config.get_ipv6() {
+            result.virtual_ipv6 = Some(ipv6.to_string()); 
         }
 
         let peers = config.get_peers();

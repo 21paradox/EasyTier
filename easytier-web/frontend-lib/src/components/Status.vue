@@ -105,6 +105,10 @@ function ipFormat(info: PeerRoutePair) {
     return ip
   return ip ? `${IPv4.fromNumber(ip.address.addr)}/${ip.network_length}` : ''
 }
+function ip6Format(info: PeerRoutePair) {
+  const ip = info.route.ipv4_addr
+  return ip || '';
+}
 
 function tunnelProto(info: PeerRoutePair) {
   return [...new Set(info.peer?.conns.map(c => c.tunnel?.tunnel_type))].join(',')
@@ -394,6 +398,7 @@ function showEventLogs() {
         <template #content>
           <DataTable :value="peerRouteInfos" column-resize-mode="fit" table-class="w-full">
             <Column :field="ipFormat" :header="t('virtual_ipv4')" />
+            <Column :field="ip6Format" :header="t('virtual_ipv6')" />
             <Column :header="t('hostname')">
               <template #body="slotProps">
                 <div v-if="!slotProps.data.route.cost || !slotProps.data.route.feature_flag.is_public_server"
