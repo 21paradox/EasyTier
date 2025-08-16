@@ -429,12 +429,12 @@ const portForwardProtocolOptions = ref(["tcp","udp"]);
           <Panel :header="t('port_forwards')" toggleable collapsed>
             <div class="flex flex-col gap-y-2">
               <div class="flex flex-row gap-x-9 flex-wrap w-full">
-                <div class="flex flex-col gap-2 grow p-fluid">
+                <div class="flex flex-col gap-2 grow p-fluid overflow-x-auto">
                   <div class="flex">
                     <label for="port_forwards">{{ t('port_forwards_help') }}</label>
                   </div>
                   <div v-for="(row, index) in curNetwork.port_forwards" class="form-row">
-                    <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
+                    <div style="display: flex; gap: 0.5rem; align-items: flex-end; min-width: 40rem;">
                       <SelectButton v-model="row.proto" :options="portForwardProtocolOptions" :allow-empty="false"/>
                       <div style="flex-grow: 4;">
                         <InputGroup>
